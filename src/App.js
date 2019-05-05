@@ -7,7 +7,7 @@ import Home from './pages/HomePage';
 import About from './pages/AboutPage';
 import Products from './pages/ProductsPage';
 import Contact from './pages/ContactPage';
-import SingleProduct from './pages/SingleProductPage';
+import SingleProductPage from './pages/SingleProductPage';
 import Default from './pages/Default';
 import Cart from './pages/CartPage';
 import Navbar from './components/Navbar';
@@ -26,9 +26,9 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
-          <Route path="/products" component={Products} />
+          <Route path="/products" exact component={Products} />
+          <Route path="/products/:id" component={SingleProductPage} />
           <Route path="/cart" component={Cart} />
-          <Route exact path="/product/:id" component={SingleProduct} />
           <Route component={Default} />
         </Switch>
         <Footer />
@@ -38,3 +38,5 @@ class App extends Component {
 }
 
 export default App;
+
+

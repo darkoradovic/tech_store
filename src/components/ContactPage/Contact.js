@@ -9,19 +9,19 @@ const Contact = () => {
             <Title title="contact us" />
                 <form className="mt-5" action="https://formspree.io/darmior5@gmail.com" method="POST">
                     <div className="form-group">
-                        <input type="text" name="firstName" className="form-control" placeholder="john smith" />
+                        <input type="text" name="firstName" className="form-control" placeholder="Name" />
                     </div>
 
                     <div className="form-group">
-                        <input type="email" name="email" className="form-control" placeholder="email@email.com" />
+                        <input type="email" name="email" className="form-control" placeholder="Email" />
                     </div>
 
                     <div className="form-group">
-                        <input type="text" name="subject" className="form-control" placeholder="important!!!" />
+                        <input type="text" name="subject" className="form-control" placeholder="Subject" />
                     </div>
 
                     <div className="form-group">
-                        <textarea name="message" className="form-control" rows="10" placeholder="Hello"></textarea>
+                        <textarea name="message" className="form-control" rows="10" placeholder="Tell us more..."></textarea>
                     </div>
 
                     <div className="form-group mt-3">
