@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { linkData } from './linkData';
 import { socialData } from './socialData';
-import { items } from './productData';
+//import { items } from './productData';
+import { client } from './contentful';
 
 const ProductContext = React.createContext();
 
@@ -31,9 +32,20 @@ class ProductProvider extends Component {
     };
 
     componentDidMount() {
+        //contentfull items
+         client.getEntries({
+            content_type: 'techStoreProducts'
+          })
+            .then((response) => this.setProducts(response.items))
+            .catch(console.error) 
+
+            /* client.getEntries()
+                .then((response) => this.setProducts(response.items))
+                .catch(console.error) */
 
 
-        this.setProducts(items);
+        //local items
+        //this.setProducts(items);
     }
 
     setProducts = (products) => {
@@ -241,33 +253,33 @@ class ProductProvider extends Component {
 
     sortData = () => {
         //console.log('sorting data')
-        const {storeProducts, price, company, shipping, search} = this.state;
+        const { storeProducts, price, company, shipping, search } = this.state;
         let tempPrice = parseInt(price);
 
         let tempProducts = [...storeProducts];
 
         tempProducts = tempProducts.filter(item => item.price <= tempPrice);
 
-        if(company !== "all"){
+        if (company !== "all") {
             tempProducts = tempProducts.filter(item => item.company === company)
         }
 
-        if(shipping){
+        if (shipping) {
             tempProducts = tempProducts.filter(item => item.freeShipping === true)
         }
 
-        if(search.length > 0){
+        if (search.length > 0) {
             tempProducts = tempProducts.filter(item => {
                 let tempSearch = search.toLowerCase();
                 let tempTitle = item.title.toLowerCase().slice(0, search.length);
 
-                if(tempSearch === tempTitle){
+                if (tempSearch === tempTitle) {
                     return item;
                 }
             })
         }
-        
-        this.setState({filteredProducts: tempProducts})
+
+        this.setState({ filteredProducts: tempProducts })
     }
 
     render() {
